@@ -1,0 +1,48 @@
+<gconfschemafile>
+ <schemalist>
+  <schema>
+   <key>/schemas/apps/denise/denise_notifier/google_username</key>
+   <applyto>/apps/denise/denise_notifier/google_username</applyto>
+   <owner>denise_notifier</owner>
+   <type>string</type>
+   <locale name="C">
+    <short>Google Username</short>
+    <long>Google Username</long>
+   </locale>
+   <default></default>
+  </schema>
+  <schema>
+   <key>/schemas/apps/denise/denise_notifier/google_usessl</key>
+   <applyto>/apps/denise/denise_notifier/google_usessl</applyto>
+   <owner>denise_notifier</owner>
+   <type>bool</type>
+   <locale name="C">
+    <short>Use SSL URLs</short>
+    <long>Should Denise provide https URLs ?</long>
+   </locale>
+   <default>true</default>
+  </schema>
+<schema>
+   <key>/schemas/apps/denise/denise_notifier/browser</key>
+   <applyto>/apps/denise/denise_notifier/browser</applyto>
+   <owner>denise_notifier</owner>
+   <type>string</type>
+   <locale name="C">
+    <short>Browser command</short>
+    <long>Browser to open URLs in</long>
+   </locale>
+   <default>firefox</default>
+  </schema>
+<schema>
+   <key>/schemas/apps/denise/denise_notifier/fetch_interval</key>
+   <applyto>/apps/denise/denise_notifier/fetch_interval</applyto>
+   <owner>denise_notifier</owner>
+   <type>string</type>
+   <locale name="C">
+    <short>Fetch Interval</short>
+    <long>Fetch Interval</long>
+   </locale>
+   <default>5</default>
+  </schema>
+ </schemalist>
+</gconfschemafile>
