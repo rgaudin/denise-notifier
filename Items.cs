@@ -6,7 +6,7 @@
 // See COPYING.
 //
 
-namespace GMailTray {
+namespace Denise {
 
 	using System;
 	using System.IO;
