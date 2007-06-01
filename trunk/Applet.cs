@@ -6,7 +6,7 @@
 // See COPYING.
 //
 
-namespace GMailTray {
+namespace Denise {
 
 	using System;
 	using System.IO;
@@ -20,13 +20,13 @@ namespace GMailTray {
 	
 	public sealed class Applet {
 
-		uint m_timeout = 5 * 60000; // 5 minutes
+		uint m_timeout;
 		const string base_mail_url = "https://mail.google.com";
 		const string gmail_domain_path = "/mail";
 		const string inbox_path = "/?shva=1";
 		const string compose_path = "/?view=cm&fs=1&tf=1&to=&su=&body=&shva=1";
 		const string mail_feed_path = "/feed/atom";
-		string domain = (Preferences.Instance.GoogleDomain == "gmail.com") ? "/mail" : "/a/"+Preferences.Instance.GoogleDomain;
+		string domain = (Preferences.Instance.GoogleDomain == "gmail.com") ? "/mail" : "/a/"+ Preferences.Instance.GoogleDomain;
 		
 		DateTime last_check = DateTime.Now;
 
@@ -63,7 +63,10 @@ namespace GMailTray {
 
 			Request ();
 			
-			int interval = int.Parse (Preferences.Instance.FetchInterval);
+			int interval = 5;
+			try {
+				interval = int.Parse (Preferences.Instance.FetchInterval);
+			} catch {}
 			m_timeout = (uint) interval * 60000;
 			GLib.Timeout.Add (m_timeout, new GLib.TimeoutHandler (Request));
 		}
@@ -102,13 +105,12 @@ namespace GMailTray {
 			
 			string inboxmsg = "Go to Inbox";
 			if (items.Length > 0) 
-				inboxmsg += " - "+items.Length+" unread";
+				inboxmsg += " - " + items.Length + " unread";
 			MenuItem menuInbox = new MenuItem (inboxmsg);
 			popupMenu.Add (menuInbox);
 			
 			MenuItem menuCompose = new MenuItem ("Compose Mail");
 			popupMenu.Add (menuCompose);
-			
 			
 			string checkmsg = "Check Mail";
 			TimeSpan duration = DateTime.Now - last_check;
@@ -121,7 +123,7 @@ namespace GMailTray {
 			
 			//list of messages
 			if (items.Length > 0) {
-				nb_unread.Markup = "<span weight=\"bold\" size=\"large\" foreground=\"#333333\"> "+items.Length+"</span>";
+				nb_unread.Markup = "<span weight=\"bold\" size=\"large\" foreground=\"#333333\"> " + items.Length + "</span>";
 				
 				MenuItem mseparator = new MenuItem();
 				popupMenu.Add(mseparator);
@@ -137,13 +139,13 @@ namespace GMailTray {
 			}
 			//"<span weight=\"bold\">"+anItem.AuthorName+"</span> - <span foreground=\"#333333\">"+anItem.Title+"</span>");
 			
-			MenuItem separator = new MenuItem();
+			MenuItem separator = new MenuItem ();
 			popupMenu.Add (separator);
 			
-			MenuItem menuOptions = new MenuItem("Preferences");
+			MenuItem menuOptions = new MenuItem ("Preferences");
 			popupMenu.Add (menuOptions);
 			
-			MenuItem menuQuit = new MenuItem("Quit Denise");
+			MenuItem menuQuit = new MenuItem ("Quit Denise");
 			popupMenu.Add (menuQuit);
 
 			menuInbox.Activated += new EventHandler (this.OnInboxClick);

@@ -6,7 +6,7 @@
 // See COPYING.
 //
 
-namespace GMailTray {
+namespace Denise {
 	
 	using System;
 	using Gtk;
@@ -19,20 +19,20 @@ namespace GMailTray {
 		GConf.Client client; // gconf client
 		
 		// these strings represent our gconf paths
-		static string GCONF_APP_PATH = "/apps/denise/denise_notifier";
-		static string USERNAME_KEY = GCONF_APP_PATH + "/google_username";
-		static string USESSL_KEY = GCONF_APP_PATH + "/google_usessl";
-		static string BRO_KEY = GCONF_APP_PATH + "/google_usessl";
-		static string BROWSER_KEY = GCONF_APP_PATH + "/browser";
-		static string INTERVAL_KEY = GCONF_APP_PATH + "/fetch_interval";
-		static string KEYRING_NAME = "GooglePassword@denise";
+		static readonly string GCONF_APP_PATH = "/apps/denise/denise_notifier";
+		static readonly string USERNAME_KEY = GCONF_APP_PATH + "/google_username";
+		static readonly string USESSL_KEY = GCONF_APP_PATH + "/google_usessl";
+		static readonly string BRO_KEY = GCONF_APP_PATH + "/google_usessl";
+		static readonly string BROWSER_KEY = GCONF_APP_PATH + "/browser";
+		static readonly string INTERVAL_KEY = GCONF_APP_PATH + "/fetch_interval";
+		static readonly string KEYRING_NAME = "GooglePassword@denise";
 		
-		private string m_google_username = String.Empty;
-		private string m_google_password = String.Empty;
+		private string m_google_username = string.Empty;
+		private string m_google_password = string.Empty;
 		private bool m_google_usessl	 = true;
-		private string m_google_domain = String.Empty;
-		private string m_browser = String.Empty;
-		private string m_interval = String.Empty;
+		private string m_google_domain = string.Empty;
+		private string m_browser = string.Empty;
+		private string m_interval = string.Empty;
 		
 		private Hashtable keyring_attr = new Hashtable ();
 		
@@ -44,8 +44,7 @@ namespace GMailTray {
 		Entry interval;
 		
 		// squeleton
-		private static Preferences instance = new Preferences ();
-		public static Preferences Instance { get{return instance;} }
+		public static readonly Preferences Instance = new Preferences ();
 		
 		public string GoogleUsername {
 			get { return m_google_username; }
